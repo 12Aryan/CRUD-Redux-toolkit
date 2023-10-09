@@ -28,10 +28,9 @@ const Users = () => {
       username: "",
     });
   };
-  const deleteUserData = () => {
-    dispatch(deleteUser());
+  const deleteUserData = (i) => {
+    dispatch(deleteUser(i));
   };
-  console.log("data-->>", user);
   return (
     <div className="App">
       <div className="addUsers">
@@ -53,11 +52,11 @@ const Users = () => {
       <div className="displayUsers">
         {userList.map((user, i) => {
           return (
-            <div>
+            <div key={i}>
             <span>{user.id}</span>
               <h1>{user.name}</h1>
               <h4> {user.username} </h4>
-              <button onClick={deleteUserData}>Delete user</button>
+              <button onClick={()=>deleteUserData(i)}>Delete user</button>
             </div>
           );
         })}
