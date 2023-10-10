@@ -12,11 +12,24 @@ export const userSlice = createSlice({
     addUser: (state, action) => {
       state.users = [...state.users, action.payload];
     },
-    updateUser: (state, action) => {},
+    updateUser: (state, action) => {
+       state.users.map((user)=>{
+        if(user.id===action.payload.id){
+          user.id =  action.payload.id
+          user.name =  action.payload.newName
+          user.username =  action.payload.newUserName
+         
+        }
+      })
+    },
     deleteUser: (state, action) => {
-      let copyData = state.users;
-      copyData.splice(action.payload, 1);
-      state.users = [...copyData];
+      //one method to delete
+
+      // let copyData = state.users;
+      // copyData.splice(action.payload, 1);
+      // state.users = [...copyData];
+
+      state.users = state.users.filter((users) => action.payload !== users.id); //another method to delete
     },
   },
 });
